@@ -4,9 +4,6 @@ export default function HomePage() {
 
         <>
             <main>
-
-
-
                 <div className="container">
                     <h1 className="text-danger">La Spesa che volevi</h1>
                     <div className="col ">
