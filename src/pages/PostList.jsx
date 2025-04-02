@@ -1,29 +1,60 @@
+import { useEffect, useState } from "react"
+import { useParams } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
+
+export default function Product() {
+    const [PostList, setPostList] = useState(null)
+
+    const navigate = useNavigate()
+
+    const { id } = useParams()
+    console.log(id);
 
 
-export default function PostList() {
+    useEffect(() => {
+        fetch(`http://localhost:3003/api/v1/posts/${id}`)
+            .then(res => res.json())
+            .then(data => {
+
+                setPostList(data)
+
+            })
+
+    }, [])
     return (
-
         <>
             <main>
 
-                <div className="container p-4">
-                    <div className="card-post card p-5">
-                        <img className="card-img-top h-75" src="https://picsum.photos/100/50" alt="Title" />
-                        <div className="card-body">
-                            <h4 className="card-title">Title</h4>
-                            <p className="card-text">BELLO TUTTO</p>
+                <section id="product_details" className="mt-5">
+                    <div className="container">
+                        <div className="row g-4">
+                            <div className="col-12 col-md-5">
+                                <img className="img-fluid" src={PostList.image} alt={PostList.title} />
+                            </div>
+                            <div className="col-12 col-md-7">
+                                <div className="back">
+                                    <button className="back" onClick={() => navigate(-1)}>
+                                        <i className="bi bi-arrow-left"></i>
+                                    </button>
+                                </div>
+                                <h1>Product: {PostList.title}</h1>
+                                <p>{PostList.description}</p>
+                                <div className="price fw-bold fs-2">${PostList.price}</div>
+                            </div>
                         </div>
                     </div>
+                </section>
 
-                </div>
+
+
 
             </main>
 
 
 
-
         </>
-    )
 
+
+    )
 
 }
