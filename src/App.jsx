@@ -20,7 +20,7 @@ export default function App() {
 
             <Route path="/" Component={HomePage} />
             <Route path="/PostLists" Component={PostLists} />
-            <Route path="/PostList/:id" Component={PostList} />
+            <Route path="/PostLists" Component={PostList} />
             <Route path="/ChiSiamo" Component={ChiSiamo} />
 
           </Route>
